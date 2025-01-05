@@ -57,11 +57,21 @@ def convert_to_format(filepaths, format):
     converted_files = []
     for filepath in filepaths:
         image = Image.open(filepath)
-        output_path = os.path.join(RESULT_FOLDER, os.path.splitext(os.path.basename(filepath))[0] + f".{format.lower()}")
+        
+        # Convert to RGB if saving as JPEG
+        if format.upper() == 'JPEG' and image.mode != 'RGB':
+            image = image.convert('RGB')
+        
+        output_path = os.path.join(
+            RESULT_FOLDER, 
+            os.path.splitext(os.path.basename(filepath))[0] + f".{format.lower()}"
+        )
         image.save(output_path, format=format)
         converted_files.append(output_path)
+    
     flash('Files converted successfully!')
     return serve_files_as_zip(converted_files)
+
 
 def convert_to_grayscale(filepaths):
     converted_files = []
