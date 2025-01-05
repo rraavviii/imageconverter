@@ -23,49 +23,30 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/about">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/how">How to use</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/contact">Contact Us</a>
-                    </li>
-
                 </ul>
-                <div class="d-flex" role="search">
-                    <button class="btn btn-outline-success mx-1" type="submit">Login</button>
-                    <button class="btn btn-outline-success mx-1" type="submit">Signup</button>
-                </div>
             </div>
         </div>
     </nav>
 
-  
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
-     
-        {% for category, message in messages %} 
+        {% for category, message in messages %}
         <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Success!</strong> {{ message | safe}}
+            <strong>Success!</strong> {{ message | safe }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
+        </div>
         {% endfor %}
-
     {% endif %}
     {% endwith %}
 
-
     <div class="container my-4">
-
-        <h1 class="fs-2 text">Monkey Edit - Edit your app online</h1>
+        <h1 class="fs-2 text">Monkey Edit - Edit Your Images Online</h1>
+        <p>Upload your images and perform various editing operations including converting them to different formats or combining multiple images into a single PDF!</p>
 
         <form action="/edit" method="post" enctype="multipart/form-data">
-
             <div class="mb-3">
-                <label for="formFile" class="form-label">Select an Image to edit</label>
-                <input class="form-control" type="file" name="file" id="formFile">
+                <label for="formFile" class="form-label">Select Images to Edit</label>
+                <input class="form-control" type="file" name="files" id="formFile" multiple>
             </div>
             <div class="mb-3">
                 <div class="form-floating">
@@ -74,19 +55,19 @@
                         <option selected>Choose an Operation</option>
                         <option value="cpng">Convert to PNG</option>
                         <option value="cgray">Convert to Grayscale</option>
-                        <option value="cwebp">Convert to Webp</option>
-                        <option value="cjpg">Convert to Jpg</option>
-
+                        <option value="cwebp">Convert to WebP</option>
+                        <option value="cjpg">Convert to JPG</option>
+                        <option value="multiple_to_pdf">Convert Multiple Images to PDF</option>
                     </select>
                     <label for="floatingSelect">Select an Editing Operation</label>
                 </div>
             </div>
             <button type="submit" class="btn btn-success">Submit</button>
-
         </form>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19u8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
 </body>
 
